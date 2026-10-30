@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="740" viewBox="0 0 1280 740" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif">
+  <title>Terraform plan reviewer on the Microsoft Copilot harness in Foundry</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1f2937"/>
+    </marker>
+    <style>
+      .zone { fill: #f8fafc; stroke: #94a3b8; stroke-width: 1.5; }
+      .zone-title { font-size: 19px; font-weight: 600; fill: #0f172a; }
+      .card { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; }
+      .card-accent { fill: #ffffff; stroke: #0078d4; stroke-width: 2; }
+      .card-title { font-size: 16px; font-weight: 600; fill: #0f172a; }
+      .card-text { font-size: 14px; fill: #334155; }
+      .mono { font-family: Consolas, "Cascadia Mono", Menlo, monospace; font-size: 13.5px; fill: #334155; }
+      .flow { stroke: #1f2937; stroke-width: 1.8; fill: none; marker-end: url(#arrow); }
+      .step { fill: #0078d4; }
+      .step-text { font-size: 13px; font-weight: 700; fill: #ffffff; }
+      .label { font-size: 13.5px; fill: #0f172a; }
+      .guard { fill: #fef2f2; stroke: #dc2626; stroke-width: 1.5; stroke-dasharray: 6 4; }
+      .guard-text { font-size: 14px; fill: #991b1b; font-weight: 600; }
+      .build { fill: #eef6fc; stroke: #0078d4; stroke-width: 1.2; }
+    </style>
+  </defs>
+
+  <rect width="1280" height="740" fill="#ffffff"/>
+  <text x="40" y="46" font-size="24" font-weight="700" fill="#0f172a">Terraform plan reviewer on the Microsoft Copilot harness</text>
+  <text x="40" y="72" font-size="15" fill="#475569">A deterministic analyser finds the risky changes. The agent explains them. Egress from the sandbox is denied.</text>
+
+  <!-- Zone A: your machine or pipeline -->
+  <rect class="zone" x="40" y="100" width="300" height="470" rx="12"/>
+  <text class="zone-title" x="60" y="132">Your machine or pipeline</text>
+  <rect class="card" x="60" y="150" width="260" height="92" rx="8"/>
+  <text class="card-title" x="76" y="176">Terraform plan</text>
+  <text class="mono" x="76" y="200">terraform plan -out tfplan</text>
+  <text class="mono" x="76" y="222">terraform show -json tfplan</text>
+  <rect class="card-accent" x="60" y="262" width="260" height="128" rx="8"/>
+  <text class="card-title" x="76" y="288">Invoke-TfPlanReview.ps1</text>
+  <text class="card-text" x="76" y="312">Redacts secrets on your machine</text>
+  <text class="card-text" x="76" y="334">Drops state and configuration</text>
+  <text class="card-text" x="76" y="356">Uploads only the redacted copy</text>
+  <text class="card-text" x="76" y="378">Deletes remote data afterwards</text>
+  <rect class="card" x="60" y="410" width="260" height="140" rx="8"/>
+  <text class="card-title" x="76" y="436">Result</text>
+  <text class="card-text" x="76" y="460">Verdict: BLOCK, REVIEW or PASS</text>
+  <text class="card-text" x="76" y="482">Findings with rule IDs</text>
+  <text class="mono" x="76" y="506">tfplan-review-report.md</text>
+  <text class="mono" x="76" y="528">*.redacted.json</text>
+
+  <!-- Zone B: Foundry project -->
+  <rect class="zone" x="410" y="100" width="440" height="470" rx="12"/>
+  <text class="zone-title" x="430" y="132">Foundry project in UK South</text>
+  <rect class="card-accent" x="430" y="150" width="400" height="118" rx="8"/>
+  <text class="card-title" x="446" y="176">Agent: tfplan-reviewer</text>
+  <text class="card-text" x="446" y="200">Prompt agent, harness microsoft_copilot_preview</text>
+  <text class="card-text" x="446" y="222">Tools: file read, file write, shell only</text>
+  <text class="card-text" x="446" y="244">Own identity with Foundry User for file uploads</text>
+  <rect class="card" x="430" y="284" width="400" height="80" rx="8"/>
+  <text class="card-title" x="446" y="310">Skill: tfplan-review, pinned version</text>
+  <text class="mono" x="446" y="334">SKILL.md</text>
+  <text class="mono" x="446" y="354">scripts/analyze_plan.py</text>
+  <rect class="card" x="430" y="380" width="400" height="56" rx="8"/>
+  <text class="card-title" x="446" y="406">Model: gpt-5.4-mini</text>
+  <text class="card-text" x="446" y="426">Global Standard deployment</text>
+  <rect class="card" x="430" y="452" width="400" height="98" rx="8"/>
+  <text class="card-title" x="446" y="478">Foundry Files</text>
+  <text class="card-text" x="446" y="502">In: the redacted plan</text>
+  <text class="card-text" x="446" y="524">Out: the review report</text>
+
+  <!-- Zone C: harness sandbox -->
+  <rect class="zone" x="920" y="100" width="320" height="470" rx="12"/>
+  <text class="zone-title" x="940" y="132">Harness sandbox, Linux</text>
+  <rect class="card" x="940" y="150" width="280" height="76" rx="8"/>
+  <text class="card-title" x="956" y="176">Skill files</text>
+  <text class="mono" x="956" y="200">~/.harness/skills/tfplan-review</text>
+  <rect class="card" x="940" y="242" width="280" height="76" rx="8"/>
+  <text class="card-title" x="956" y="268">Staged input</text>
+  <text class="mono" x="956" y="292">workspace/data/plan.json</text>
+  <rect class="card-accent" x="940" y="334" width="280" height="76" rx="8"/>
+  <text class="card-title" x="956" y="360">Shell</text>
+  <text class="mono" x="956" y="384">python3 analyze_plan.py</text>
+  <rect class="card" x="940" y="424" width="280" height="62" rx="8"/>
+  <text class="card-title" x="956" y="447">Report</text>
+  <text class="mono" x="956" y="471">workspace/outputs/report.md</text>
+  <rect class="guard" x="940" y="496" width="280" height="56" rx="8"/>
+  <text class="guard-text" x="956" y="520">Egress policy: deny all</text>
+  <text class="card-text" x="956" y="541" fill="#991b1b">curl to the internet gets HTTP 403</text>
+
+  <!-- Flows -->
+  <path class="flow" d="M320,330 C365,330 365,486 428,486"/>
+  <circle class="step" cx="372" cy="398" r="12"/><text class="step-text" x="368" y="403">1</text>
+
+  <path class="flow" d="M320,300 C370,300 370,200 428,200"/>
+  <circle class="step" cx="374" cy="248" r="12"/><text class="step-text" x="370" y="253">2</text>
+
+  <path class="flow" d="M830,200 L938,200"/>
+  <circle class="step" cx="884" cy="200" r="12"/><text class="step-text" x="880" y="205">3</text>
+
+  <path class="flow" d="M1080,318 L1080,332"/>
+  <circle class="step" cx="1110" cy="324" r="12"/><text class="step-text" x="1106" y="329">4</text>
+
+  <path class="flow" d="M938,456 C890,456 890,510 832,510"/>
+  <circle class="step" cx="884" cy="482" r="12"/><text class="step-text" x="880" y="487">5</text>
+
+  <path class="flow" d="M428,532 C375,532 375,470 322,470"/>
+  <circle class="step" cx="378" cy="508" r="12"/><text class="step-text" x="374" y="513">6</text>
+
+  <!-- Legend -->
+  <g font-size="14" fill="#0f172a">
+    <circle class="step" cx="52" cy="604" r="10"/><text class="step-text" x="48" y="609">1</text>
+    <text x="70" y="609">Upload the redacted plan</text>
+    <circle class="step" cx="292" cy="604" r="10"/><text class="step-text" x="288" y="609">2</text>
+    <text x="310" y="609">Conversation and background response</text>
+    <circle class="step" cx="602" cy="604" r="10"/><text class="step-text" x="598" y="609">3</text>
+    <text x="620" y="609">Harness loads the skill and stages the plan</text>
+    <circle class="step" cx="52" cy="636" r="10"/><text class="step-text" x="48" y="641">4</text>
+    <text x="70" y="641">The analyser runs in the shell</text>
+    <circle class="step" cx="292" cy="636" r="10"/><text class="step-text" x="288" y="641">5</text>
+    <text x="310" y="641">Agent identity uploads the report</text>
+    <circle class="step" cx="602" cy="636" r="10"/><text class="step-text" x="598" y="641">6</text>
+    <text x="620" y="641">Client downloads the report and deletes remote copies</text>
+  </g>
+
+  <!-- How it is built -->
+  <rect class="build" x="40" y="664" width="595" height="50" rx="8"/>
+  <text x="56" y="694" font-size="14.5" fill="#0f172a"><tspan font-weight="700">infra/ Terraform</tspan>  account, project, model, Foundry User, egress policy</text>
+  <rect class="build" x="645" y="664" width="595" height="50" rx="8"/>
+  <text x="661" y="694" font-size="14.5" fill="#0f172a"><tspan font-weight="700">agent/ azd</tspan>  skill version, harness agent, postdeploy role hook</text>
+</svg>

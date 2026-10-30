@@ -1,0 +1,29 @@
+# Terraform
+.terraform/
+.terraform.lock.hcl.bak
+*.tfstate
+*.tfstate.*
+*.tfplan
+tfplan*
+crash.log
+infra/terraform.tfvars
+demo/terraform.tfvars
+
+# Raw plans can contain secrets - only sanitised fixtures under tests/fixtures are committed
+demo/plan*.json
+
+# azd environments (hold subscription IDs and endpoints)
+.azure/
+agent/.azure/
+
+# Review outputs downloaded from Foundry Files
+outputs/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+
+# Local logs
+*.log

@@ -1,0 +1,51 @@
+{
+  "format_version": "1.2",
+  "terraform_version": "1.14.9",
+  "resource_changes": [
+    {
+      "address": "azurerm_network_security_rule.rdp",
+      "mode": "managed",
+      "type": "azurerm_network_security_rule",
+      "name": "rdp",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "name": "allow-rdp",
+          "direction": "Inbound",
+          "access": "Allow",
+          "protocol": "Tcp",
+          "source_address_prefix": "Internet",
+          "destination_port_range": "3389",
+          "priority": 100
+        },
+        "after_unknown": {
+          "id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "azurerm_management_lock.storage",
+      "mode": "managed",
+      "type": "azurerm_management_lock",
+      "name": "storage",
+      "change": {
+        "actions": [
+          "delete"
+        ],
+        "before": {
+          "name": "lock-storage",
+          "lock_level": "CanNotDelete"
+        },
+        "after": null,
+        "after_unknown": {},
+        "before_sensitive": {},
+        "after_sensitive": false
+      }
+    }
+  ]
+}

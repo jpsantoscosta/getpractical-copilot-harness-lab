@@ -1,0 +1,9 @@
+# Copy to terraform.tfvars (git-ignored) and fill in.
+subscription_id = "00000000-0000-0000-0000-000000000000"
+
+# Optional overrides
+# location             = "uksouth"
+# owner                = "your-name"
+# model_capacity       = 100
+# egress_mode          = "Enforced"   # or "Audit" to log instead of block
+# egress_allowed_hosts = ["pypi.org", "files.pythonhosted.org"]

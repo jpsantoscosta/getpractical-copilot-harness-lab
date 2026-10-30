@@ -1,0 +1,1094 @@
+{
+  "format_version": "1.2",
+  "terraform_version": "1.14.9",
+  "variables": {
+    "demo_api_key": {
+      "value": "FAKE-SENSITIVE-VALUE-1"
+    },
+    "location": {
+      "value": "uksouth"
+    },
+    "owner": {
+      "value": "platform-team"
+    },
+    "scenario": {
+      "value": "baseline"
+    },
+    "subscription_id": {
+      "value": "00000000-0000-0000-0000-000000000000"
+    }
+  },
+  "planned_values": {
+    "outputs": {
+      "storage_connection_string": {
+        "sensitive": true
+      }
+    },
+    "root_module": {
+      "resources": [
+        {
+          "address": "azurerm_management_lock.storage[0]",
+          "mode": "managed",
+          "type": "azurerm_management_lock",
+          "name": "storage",
+          "index": 0,
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 0,
+          "values": {
+            "lock_level": "CanNotDelete",
+            "name": "lock-tfreviewdemo-lab-uks-storage",
+            "notes": "Protects the demo storage account from deletion.",
+            "timeouts": null
+          },
+          "sensitive_values": {}
+        },
+        {
+          "address": "azurerm_network_security_group.demo",
+          "mode": "managed",
+          "type": "azurerm_network_security_group",
+          "name": "demo",
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 0,
+          "values": {
+            "location": "uksouth",
+            "name": "nsg-tfreviewdemo-lab-uks-01",
+            "resource_group_name": "rg-tfreviewdemo-lab-uks-01",
+            "tags": {
+              "environment": "lab",
+              "managed-by": "terraform",
+              "owner": "platform-team",
+              "workload": "tfreviewdemo"
+            },
+            "timeouts": null
+          },
+          "sensitive_values": {
+            "security_rule": [],
+            "tags": {}
+          }
+        },
+        {
+          "address": "azurerm_network_security_rule.allow_https_from_vnet",
+          "mode": "managed",
+          "type": "azurerm_network_security_rule",
+          "name": "allow_https_from_vnet",
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 0,
+          "values": {
+            "access": "Allow",
+            "description": null,
+            "destination_address_prefix": "*",
+            "destination_address_prefixes": null,
+            "destination_application_security_group_ids": null,
+            "destination_port_range": "443",
+            "destination_port_ranges": null,
+            "direction": "Inbound",
+            "name": "allow-https-from-vnet",
+            "network_security_group_name": "nsg-tfreviewdemo-lab-uks-01",
+            "priority": 100,
+            "protocol": "Tcp",
+            "resource_group_name": "rg-tfreviewdemo-lab-uks-01",
+            "source_address_prefix": "VirtualNetwork",
+            "source_address_prefixes": null,
+            "source_application_security_group_ids": null,
+            "source_port_range": "*",
+            "source_port_ranges": null,
+            "timeouts": null
+          },
+          "sensitive_values": {}
+        },
+        {
+          "address": "azurerm_resource_group.demo",
+          "mode": "managed",
+          "type": "azurerm_resource_group",
+          "name": "demo",
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 0,
+          "values": {
+            "location": "uksouth",
+            "managed_by": null,
+            "name": "rg-tfreviewdemo-lab-uks-01",
+            "tags": {
+              "environment": "lab",
+              "managed-by": "terraform",
+              "owner": "platform-team",
+              "workload": "tfreviewdemo"
+            },
+            "timeouts": null
+          },
+          "sensitive_values": {
+            "tags": {}
+          }
+        },
+        {
+          "address": "azurerm_storage_account.demo",
+          "mode": "managed",
+          "type": "azurerm_storage_account",
+          "name": "demo",
+          "provider_name": "registry.terraform.io/hashicorp/azurerm",
+          "schema_version": 4,
+          "values": {
+            "account_kind": "StorageV2",
+            "account_replication_type": "LRS",
+            "account_tier": "Standard",
+            "allow_nested_items_to_be_public": false,
+            "allowed_copy_scope": null,
+            "azure_files_authentication": [],
+            "cross_tenant_replication_enabled": false,
+            "custom_domain": [],
+            "customer_managed_key": [],
+            "default_to_oauth_authentication": false,
+            "dns_endpoint_type": "Standard",
+            "edge_zone": null,
+            "https_traffic_only_enabled": true,
+            "identity": [],
+            "immutability_policy": [],
+            "infrastructure_encryption_enabled": false,
+            "is_hns_enabled": false,
+            "local_user_enabled": true,
+            "location": "uksouth",
+            "min_tls_version": "TLS1_2",
+            "nfsv3_enabled": false,
+            "provisioned_billing_model_version": null,
+            "public_network_access_enabled": false,
+            "queue_encryption_key_type": "Service",
+            "resource_group_name": "rg-tfreviewdemo-lab-uks-01",
+            "sas_policy": [],
+            "sftp_enabled": false,
+            "shared_access_key_enabled": true,
+            "table_encryption_key_type": "Service",
+            "tags": {
+              "environment": "lab",
+              "managed-by": "terraform",
+              "owner": "platform-team",
+              "workload": "tfreviewdemo"
+            },
+            "timeouts": null
+          },
+          "sensitive_values": {
+            "azure_files_authentication": [],
+            "blob_properties": [],
+            "custom_domain": [],
+            "customer_managed_key": [],
+            "identity": [],
+            "immutability_policy": [],
+            "network_rules": [],
+            "primary_access_key": true,
+            "primary_blob_connection_string": true,
+            "primary_connection_string": true,
+            "routing": [],
+            "sas_policy": [],
+            "secondary_access_key": true,
+            "secondary_blob_connection_string": true,
+            "secondary_connection_string": true,
+            "share_properties": [],
+            "tags": {}
+          },
+          "identity_schema_version": 0,
+          "identity": {
+            "name": null,
+            "resource_group_name": null,
+            "subscription_id": null
+          }
+        },
+        {
+          "address": "random_string.suffix",
+          "mode": "managed",
+          "type": "random_string",
+          "name": "suffix",
+          "provider_name": "registry.terraform.io/hashicorp/random",
+          "schema_version": 2,
+          "values": {
+            "keepers": null,
+            "length": 6,
+            "lower": true,
+            "min_lower": 0,
+            "min_numeric": 0,
+            "min_special": 0,
+            "min_upper": 0,
+            "number": true,
+            "numeric": true,
+            "override_special": null,
+            "special": false,
+            "upper": false
+          },
+          "sensitive_values": {}
+        },
+        {
+          "address": "terraform_data.app_settings",
+          "mode": "managed",
+          "type": "terraform_data",
+          "name": "app_settings",
+          "provider_name": "terraform.io/builtin/terraform",
+          "schema_version": 0,
+          "values": {
+            "input": {
+              "api_key": "FAKE-SENSITIVE-VALUE-1",
+              "region": "uksouth"
+            },
+            "triggers_replace": null
+          },
+          "sensitive_values": {
+            "input": {
+              "api_key": true
+            },
+            "output": {}
+          }
+        }
+      ]
+    }
+  },
+  "resource_changes": [
+    {
+      "address": "azurerm_management_lock.storage[0]",
+      "mode": "managed",
+      "type": "azurerm_management_lock",
+      "name": "storage",
+      "index": 0,
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "lock_level": "CanNotDelete",
+          "name": "lock-tfreviewdemo-lab-uks-storage",
+          "notes": "Protects the demo storage account from deletion.",
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true,
+          "scope": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "azurerm_network_security_group.demo",
+      "mode": "managed",
+      "type": "azurerm_network_security_group",
+      "name": "demo",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "location": "uksouth",
+          "name": "nsg-tfreviewdemo-lab-uks-01",
+          "resource_group_name": "rg-tfreviewdemo-lab-uks-01",
+          "tags": {
+            "environment": "lab",
+            "managed-by": "terraform",
+            "owner": "platform-team",
+            "workload": "tfreviewdemo"
+          },
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true,
+          "security_rule": true,
+          "tags": {}
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "security_rule": [],
+          "tags": {}
+        }
+      }
+    },
+    {
+      "address": "azurerm_network_security_rule.allow_https_from_vnet",
+      "mode": "managed",
+      "type": "azurerm_network_security_rule",
+      "name": "allow_https_from_vnet",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "access": "Allow",
+          "description": null,
+          "destination_address_prefix": "*",
+          "destination_address_prefixes": null,
+          "destination_application_security_group_ids": null,
+          "destination_port_range": "443",
+          "destination_port_ranges": null,
+          "direction": "Inbound",
+          "name": "allow-https-from-vnet",
+          "network_security_group_name": "nsg-tfreviewdemo-lab-uks-01",
+          "priority": 100,
+          "protocol": "Tcp",
+          "resource_group_name": "rg-tfreviewdemo-lab-uks-01",
+          "source_address_prefix": "VirtualNetwork",
+          "source_address_prefixes": null,
+          "source_application_security_group_ids": null,
+          "source_port_range": "*",
+          "source_port_ranges": null,
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "azurerm_resource_group.demo",
+      "mode": "managed",
+      "type": "azurerm_resource_group",
+      "name": "demo",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "location": "uksouth",
+          "managed_by": null,
+          "name": "rg-tfreviewdemo-lab-uks-01",
+          "tags": {
+            "environment": "lab",
+            "managed-by": "terraform",
+            "owner": "platform-team",
+            "workload": "tfreviewdemo"
+          },
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true,
+          "tags": {}
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "tags": {}
+        }
+      }
+    },
+    {
+      "address": "azurerm_storage_account.demo",
+      "mode": "managed",
+      "type": "azurerm_storage_account",
+      "name": "demo",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "account_kind": "StorageV2",
+          "account_replication_type": "LRS",
+          "account_tier": "Standard",
+          "allow_nested_items_to_be_public": false,
+          "allowed_copy_scope": null,
+          "azure_files_authentication": [],
+          "cross_tenant_replication_enabled": false,
+          "custom_domain": [],
+          "customer_managed_key": [],
+          "default_to_oauth_authentication": false,
+          "dns_endpoint_type": "Standard",
+          "edge_zone": null,
+          "https_traffic_only_enabled": true,
+          "identity": [],
+          "immutability_policy": [],
+          "infrastructure_encryption_enabled": false,
+          "is_hns_enabled": false,
+          "local_user_enabled": true,
+          "location": "uksouth",
+          "min_tls_version": "TLS1_2",
+          "nfsv3_enabled": false,
+          "provisioned_billing_model_version": null,
+          "public_network_access_enabled": false,
+          "queue_encryption_key_type": "Service",
+          "resource_group_name": "rg-tfreviewdemo-lab-uks-01",
+          "sas_policy": [],
+          "sftp_enabled": false,
+          "shared_access_key_enabled": true,
+          "table_encryption_key_type": "Service",
+          "tags": {
+            "environment": "lab",
+            "managed-by": "terraform",
+            "owner": "platform-team",
+            "workload": "tfreviewdemo"
+          },
+          "timeouts": null
+        },
+        "after_unknown": {
+          "access_tier": true,
+          "account_replication_type_migrating_to": true,
+          "account_replication_type_migration_in_progress": true,
+          "azure_files_authentication": [],
+          "blob_properties": true,
+          "custom_domain": [],
+          "customer_managed_key": [],
+          "id": true,
+          "identity": [],
+          "immutability_policy": [],
+          "large_file_share_enabled": true,
+          "name": true,
+          "network_rules": true,
+          "primary_access_key": true,
+          "primary_blob_connection_string": true,
+          "primary_blob_endpoint": true,
+          "primary_blob_host": true,
+          "primary_blob_internet_endpoint": true,
+          "primary_blob_internet_host": true,
+          "primary_blob_microsoft_endpoint": true,
+          "primary_blob_microsoft_host": true,
+          "primary_connection_string": true,
+          "primary_dfs_endpoint": true,
+          "primary_dfs_host": true,
+          "primary_dfs_internet_endpoint": true,
+          "primary_dfs_internet_host": true,
+          "primary_dfs_microsoft_endpoint": true,
+          "primary_dfs_microsoft_host": true,
+          "primary_file_endpoint": true,
+          "primary_file_host": true,
+          "primary_file_internet_endpoint": true,
+          "primary_file_internet_host": true,
+          "primary_file_microsoft_endpoint": true,
+          "primary_file_microsoft_host": true,
+          "primary_location": true,
+          "primary_queue_endpoint": true,
+          "primary_queue_host": true,
+          "primary_queue_microsoft_endpoint": true,
+          "primary_queue_microsoft_host": true,
+          "primary_table_endpoint": true,
+          "primary_table_host": true,
+          "primary_table_microsoft_endpoint": true,
+          "primary_table_microsoft_host": true,
+          "primary_web_endpoint": true,
+          "primary_web_host": true,
+          "primary_web_internet_endpoint": true,
+          "primary_web_internet_host": true,
+          "primary_web_microsoft_endpoint": true,
+          "primary_web_microsoft_host": true,
+          "public_network_access": true,
+          "routing": true,
+          "sas_policy": [],
+          "secondary_access_key": true,
+          "secondary_blob_connection_string": true,
+          "secondary_blob_endpoint": true,
+          "secondary_blob_host": true,
+          "secondary_blob_internet_endpoint": true,
+          "secondary_blob_internet_host": true,
+          "secondary_blob_microsoft_endpoint": true,
+          "secondary_blob_microsoft_host": true,
+          "secondary_connection_string": true,
+          "secondary_dfs_endpoint": true,
+          "secondary_dfs_host": true,
+          "secondary_dfs_internet_endpoint": true,
+          "secondary_dfs_internet_host": true,
+          "secondary_dfs_microsoft_endpoint": true,
+          "secondary_dfs_microsoft_host": true,
+          "secondary_file_endpoint": true,
+          "secondary_file_host": true,
+          "secondary_file_internet_endpoint": true,
+          "secondary_file_internet_host": true,
+          "secondary_file_microsoft_endpoint": true,
+          "secondary_file_microsoft_host": true,
+          "secondary_location": true,
+          "secondary_queue_endpoint": true,
+          "secondary_queue_host": true,
+          "secondary_queue_microsoft_endpoint": true,
+          "secondary_queue_microsoft_host": true,
+          "secondary_table_endpoint": true,
+          "secondary_table_host": true,
+          "secondary_table_microsoft_endpoint": true,
+          "secondary_table_microsoft_host": true,
+          "secondary_web_endpoint": true,
+          "secondary_web_host": true,
+          "secondary_web_internet_endpoint": true,
+          "secondary_web_internet_host": true,
+          "secondary_web_microsoft_endpoint": true,
+          "secondary_web_microsoft_host": true,
+          "share_properties": true,
+          "tags": {}
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "azure_files_authentication": [],
+          "blob_properties": [],
+          "custom_domain": [],
+          "customer_managed_key": [],
+          "identity": [],
+          "immutability_policy": [],
+          "network_rules": [],
+          "primary_access_key": true,
+          "primary_blob_connection_string": true,
+          "primary_connection_string": true,
+          "routing": [],
+          "sas_policy": [],
+          "secondary_access_key": true,
+          "secondary_blob_connection_string": true,
+          "secondary_connection_string": true,
+          "share_properties": [],
+          "tags": {}
+        },
+        "after_identity": {
+          "name": null,
+          "resource_group_name": null,
+          "subscription_id": null
+        }
+      }
+    },
+    {
+      "address": "random_string.suffix",
+      "mode": "managed",
+      "type": "random_string",
+      "name": "suffix",
+      "provider_name": "registry.terraform.io/hashicorp/random",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "keepers": null,
+          "length": 6,
+          "lower": true,
+          "min_lower": 0,
+          "min_numeric": 0,
+          "min_special": 0,
+          "min_upper": 0,
+          "number": true,
+          "numeric": true,
+          "override_special": null,
+          "special": false,
+          "upper": false
+        },
+        "after_unknown": {
+          "id": true,
+          "result": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "terraform_data.app_settings",
+      "mode": "managed",
+      "type": "terraform_data",
+      "name": "app_settings",
+      "provider_name": "terraform.io/builtin/terraform",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "input": {
+            "api_key": "FAKE-SENSITIVE-VALUE-1",
+            "region": "uksouth"
+          },
+          "triggers_replace": null
+        },
+        "after_unknown": {
+          "id": true,
+          "input": {},
+          "output": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "input": {
+            "api_key": true
+          },
+          "output": {}
+        }
+      }
+    }
+  ],
+  "output_changes": {
+    "storage_connection_string": {
+      "actions": [
+        "create"
+      ],
+      "before": null,
+      "after_unknown": true,
+      "before_sensitive": true,
+      "after_sensitive": true
+    }
+  },
+  "prior_state": {
+    "format_version": "1.0",
+    "terraform_version": "1.14.9",
+    "values": {
+      "root_module": {
+        "resources": [
+          {
+            "address": "data.azurerm_client_config.current",
+            "mode": "data",
+            "type": "azurerm_client_config",
+            "name": "current",
+            "provider_name": "registry.terraform.io/hashicorp/azurerm",
+            "schema_version": 0,
+            "values": {
+              "client_id": "04b07795-8ddb-461a-bbee-02f9e1bf7b46",
+              "id": "Y2xpZW50Q29uZmlncy9jbGllbnRJZD0wNGIwNzc5NS04ZGRiLTQ2MWEtYmJlZS0wMmY5ZTFiZjdiNDY7b2JqZWN0SWQ9MWZmNmM1ZWItNjRmZC00MmE5LWExMzgtYTk0NjdhYjBmZDg3O3N1YnNjcmlwdGlvbklkPTljYWFkMDg1LTAwOTgtNDBiNi1hOTg4LTE0YTdmMDQ3M2QyOTt0ZW5hbnRJZD00NTBlNjM4My1jZTY1LTQyYmItYjlhNS0xZGQ4MzRlMDRmYTU=",
+              "object_id": "22222222-2222-2222-2222-222222222222",
+              "subscription_id": "00000000-0000-0000-0000-000000000000",
+              "tenant_id": "11111111-1111-1111-1111-111111111111",
+              "timeouts": null
+            },
+            "sensitive_values": {}
+          }
+        ]
+      }
+    }
+  },
+  "configuration": {
+    "provider_config": {
+      "azurerm": {
+        "name": "azurerm",
+        "full_name": "registry.terraform.io/hashicorp/azurerm",
+        "version_constraint": "~> 5.12",
+        "expressions": {
+          "features": [
+            {}
+          ],
+          "subscription_id": {
+            "references": [
+              "var.subscription_id"
+            ]
+          }
+        }
+      },
+      "random": {
+        "name": "random",
+        "full_name": "registry.terraform.io/hashicorp/random",
+        "version_constraint": "~> 3.9"
+      },
+      "terraform": {
+        "name": "terraform",
+        "full_name": "terraform.io/builtin/terraform"
+      }
+    },
+    "root_module": {
+      "outputs": {
+        "storage_connection_string": {
+          "sensitive": true,
+          "expression": {
+            "references": [
+              "azurerm_storage_account.demo.primary_connection_string",
+              "azurerm_storage_account.demo"
+            ]
+          }
+        }
+      },
+      "resources": [
+        {
+          "address": "azurerm_management_lock.storage",
+          "mode": "managed",
+          "type": "azurerm_management_lock",
+          "name": "storage",
+          "provider_config_key": "azurerm",
+          "expressions": {
+            "lock_level": {
+              "constant_value": "CanNotDelete"
+            },
+            "name": {
+              "references": [
+                "local.name_stem"
+              ]
+            },
+            "notes": {
+              "constant_value": "Protects the demo storage account from deletion."
+            },
+            "scope": {
+              "references": [
+                "azurerm_storage_account.demo.id",
+                "azurerm_storage_account.demo"
+              ]
+            }
+          },
+          "schema_version": 0,
+          "count_expression": {
+            "references": [
+              "local.risky"
+            ]
+          }
+        },
+        {
+          "address": "azurerm_network_security_group.demo",
+          "mode": "managed",
+          "type": "azurerm_network_security_group",
+          "name": "demo",
+          "provider_config_key": "azurerm",
+          "expressions": {
+            "location": {
+              "references": [
+                "azurerm_resource_group.demo.location",
+                "azurerm_resource_group.demo"
+              ]
+            },
+            "name": {
+              "references": [
+                "local.name_stem"
+              ]
+            },
+            "resource_group_name": {
+              "references": [
+                "azurerm_resource_group.demo.name",
+                "azurerm_resource_group.demo"
+              ]
+            },
+            "tags": {
+              "references": [
+                "local.tags"
+              ]
+            }
+          },
+          "schema_version": 0
+        },
+        {
+          "address": "azurerm_network_security_rule.allow_https_from_vnet",
+          "mode": "managed",
+          "type": "azurerm_network_security_rule",
+          "name": "allow_https_from_vnet",
+          "provider_config_key": "azurerm",
+          "expressions": {
+            "access": {
+              "constant_value": "Allow"
+            },
+            "destination_address_prefix": {
+              "constant_value": "*"
+            },
+            "destination_port_range": {
+              "constant_value": "443"
+            },
+            "direction": {
+              "constant_value": "Inbound"
+            },
+            "name": {
+              "constant_value": "allow-https-from-vnet"
+            },
+            "network_security_group_name": {
+              "references": [
+                "azurerm_network_security_group.demo.name",
+                "azurerm_network_security_group.demo"
+              ]
+            },
+            "priority": {
+              "constant_value": 100
+            },
+            "protocol": {
+              "constant_value": "Tcp"
+            },
+            "resource_group_name": {
+              "references": [
+                "azurerm_resource_group.demo.name",
+                "azurerm_resource_group.demo"
+              ]
+            },
+            "source_address_prefix": {
+              "constant_value": "VirtualNetwork"
+            },
+            "source_port_range": {
+              "constant_value": "*"
+            }
+          },
+          "schema_version": 0
+        },
+        {
+          "address": "azurerm_network_security_rule.allow_rdp",
+          "mode": "managed",
+          "type": "azurerm_network_security_rule",
+          "name": "allow_rdp",
+          "provider_config_key": "azurerm",
+          "expressions": {
+            "access": {
+              "constant_value": "Allow"
+            },
+            "destination_address_prefix": {
+              "constant_value": "*"
+            },
+            "destination_port_range": {
+              "constant_value": "3389"
+            },
+            "direction": {
+              "constant_value": "Inbound"
+            },
+            "name": {
+              "constant_value": "allow-rdp-temp"
+            },
+            "network_security_group_name": {
+              "references": [
+                "azurerm_network_security_group.demo.name",
+                "azurerm_network_security_group.demo"
+              ]
+            },
+            "priority": {
+              "constant_value": 200
+            },
+            "protocol": {
+              "constant_value": "Tcp"
+            },
+            "resource_group_name": {
+              "references": [
+                "azurerm_resource_group.demo.name",
+                "azurerm_resource_group.demo"
+              ]
+            },
+            "source_address_prefix": {
+              "constant_value": "Internet"
+            },
+            "source_port_range": {
+              "constant_value": "*"
+            }
+          },
+          "schema_version": 0,
+          "count_expression": {
+            "references": [
+              "local.risky"
+            ]
+          }
+        },
+        {
+          "address": "azurerm_resource_group.demo",
+          "mode": "managed",
+          "type": "azurerm_resource_group",
+          "name": "demo",
+          "provider_config_key": "azurerm",
+          "expressions": {
+            "location": {
+              "references": [
+                "var.location"
+              ]
+            },
+            "name": {
+              "references": [
+                "local.name_stem"
+              ]
+            },
+            "tags": {
+              "references": [
+                "local.risky",
+                "local.tags",
+                "local.tags"
+              ]
+            }
+          },
+          "schema_version": 0
+        },
+        {
+          "address": "azurerm_role_assignment.owner",
+          "mode": "managed",
+          "type": "azurerm_role_assignment",
+          "name": "owner",
+          "provider_config_key": "azurerm",
+          "expressions": {
+            "principal_id": {
+              "references": [
+                "data.azurerm_client_config.current.object_id",
+                "data.azurerm_client_config.current"
+              ]
+            },
+            "role_definition_name": {
+              "constant_value": "Owner"
+            },
+            "scope": {
+              "references": [
+                "azurerm_resource_group.demo.id",
+                "azurerm_resource_group.demo"
+              ]
+            }
+          },
+          "schema_version": 0,
+          "count_expression": {
+            "references": [
+              "local.risky"
+            ]
+          }
+        },
+        {
+          "address": "azurerm_storage_account.demo",
+          "mode": "managed",
+          "type": "azurerm_storage_account",
+          "name": "demo",
+          "provider_config_key": "azurerm",
+          "expressions": {
+            "account_replication_type": {
+              "constant_value": "LRS"
+            },
+            "account_tier": {
+              "constant_value": "Standard"
+            },
+            "allow_nested_items_to_be_public": {
+              "references": [
+                "local.risky"
+              ]
+            },
+            "location": {
+              "references": [
+                "azurerm_resource_group.demo.location",
+                "azurerm_resource_group.demo"
+              ]
+            },
+            "min_tls_version": {
+              "constant_value": "TLS1_2"
+            },
+            "name": {
+              "references": [
+                "local.risky",
+                "random_string.suffix.result",
+                "random_string.suffix",
+                "random_string.suffix.result",
+                "random_string.suffix"
+              ]
+            },
+            "public_network_access_enabled": {
+              "references": [
+                "local.risky"
+              ]
+            },
+            "resource_group_name": {
+              "references": [
+                "azurerm_resource_group.demo.name",
+                "azurerm_resource_group.demo"
+              ]
+            },
+            "tags": {
+              "references": [
+                "local.risky",
+                "local.tags"
+              ]
+            }
+          },
+          "schema_version": 4
+        },
+        {
+          "address": "random_string.suffix",
+          "mode": "managed",
+          "type": "random_string",
+          "name": "suffix",
+          "provider_config_key": "random",
+          "expressions": {
+            "length": {
+              "constant_value": 6
+            },
+            "special": {
+              "constant_value": false
+            },
+            "upper": {
+              "constant_value": false
+            }
+          },
+          "schema_version": 2
+        },
+        {
+          "address": "terraform_data.app_settings",
+          "mode": "managed",
+          "type": "terraform_data",
+          "name": "app_settings",
+          "provider_config_key": "terraform",
+          "expressions": {
+            "input": {
+              "references": [
+                "var.demo_api_key",
+                "var.location"
+              ]
+            }
+          },
+          "schema_version": 0
+        },
+        {
+          "address": "data.azurerm_client_config.current",
+          "mode": "data",
+          "type": "azurerm_client_config",
+          "name": "current",
+          "provider_config_key": "azurerm",
+          "schema_version": 0
+        }
+      ],
+      "variables": {
+        "demo_api_key": {
+          "default": "FAKE-SENSITIVE-VALUE-1",
+          "description": "Stand-in secret so the plan contains a sensitive variable. Not a real credential.",
+          "sensitive": true
+        },
+        "location": {
+          "default": "uksouth",
+          "description": "Region for the demo workload."
+        },
+        "owner": {
+          "default": "getpractical",
+          "description": "Value for the owner tag."
+        },
+        "scenario": {
+          "default": "baseline",
+          "description": "baseline is what you apply. risky is a bad change you only ever plan, to give the reviewer something to find."
+        },
+        "subscription_id": {
+          "description": "Subscription for the demo workload."
+        }
+      }
+    }
+  },
+  "relevant_attributes": [
+    {
+      "resource": "azurerm_resource_group.demo",
+      "attribute": [
+        "location"
+      ]
+    },
+    {
+      "resource": "azurerm_storage_account.demo",
+      "attribute": [
+        "primary_connection_string"
+      ]
+    },
+    {
+      "resource": "azurerm_network_security_group.demo",
+      "attribute": [
+        "name"
+      ]
+    },
+    {
+      "resource": "azurerm_resource_group.demo",
+      "attribute": [
+        "name"
+      ]
+    },
+    {
+      "resource": "azurerm_storage_account.demo",
+      "attribute": [
+        "id"
+      ]
+    },
+    {
+      "resource": "random_string.suffix",
+      "attribute": [
+        "result"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "address": {
+        "kind": "var",
+        "name": "scenario",
+        "to_display": "var.scenario"
+      },
+      "status": "pass",
+      "instances": [
+        {
+          "address": {
+            "to_display": "var.scenario"
+          },
+          "status": "pass"
+        }
+      ]
+    }
+  ],
+  "timestamp": "2026-10-30T17:58:15Z",
+  "applyable": true,
+  "complete": true,
+  "errored": false
+}

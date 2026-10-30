@@ -1,0 +1,5 @@
+# Keep LF everywhere: the skill folder is packaged and executed in a Linux sandbox,
+# and Terraform/PowerShell/Python are all happy with LF on Windows.
+* text=auto eol=lf
+*.png binary
+*.zip binary
